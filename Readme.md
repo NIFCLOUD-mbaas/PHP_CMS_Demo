@@ -94,6 +94,7 @@ __[PHP_CMS_Demo](https://github.com/NIFTYCloud-mbaas/PHP_CMS_Demo/archive/master
   ![画像](readme-img/input_form.png)
 
 * アップロードするファイルを選択します。（ダウンロードしたフォルダーには`test.txt`をサンプルとして利用できます）
+
   ![画像](readme-img/select_file.png)
 
 * 「ファイルを送信する」ボタンをクリックします。正常にアップロードできる場合、以下のように、「実行結果」には作成したファイル名と作成日時が表示されます。
@@ -107,13 +108,15 @@ __[PHP_CMS_Demo](https://github.com/NIFTYCloud-mbaas/PHP_CMS_Demo/archive/master
 * エラーの場合、以下のようなケースがあります。
 
   ファイルを選択していない場合のエラーメッセージ
+
     ![画像](readme-img/fail_result_1.png)
+
   ファイル名を入力していない場合のエラーメッセージ
+
     ![画像](readme-img/fail_result_2.png)
 
 ## 解説
-
-  ### REST API実装について
+### REST API実装について
 
   * ニフティクラウド mobile backend は REST API を提供しているため、外部サーバからデータストアや会員管理などすべての機能をご利用いただけます。
 
