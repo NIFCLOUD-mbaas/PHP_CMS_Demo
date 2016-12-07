@@ -36,20 +36,21 @@ PHP環境及びPHP対応するサーバー(Apacheなど)を用意する必要が
 #### ローカル環境
 ##### Macの場合
 既にPHP及びApacheが入っております。Apacheを起動したら、そのまま、ブラウザーで確認いただけます。参考のために、macOS Sierra version 10.12.1の場合、以下の設定を行いました。
+
 1. Apacheを起動する
-```bash
+ ```bash
 $ sudo apachectl start
 ```
 
 1. 確認するには、ブラウザーから以下のURLをアクセスします
-```text
+ ```text
 http://localhost/
 ```
 ![画像](readme-img/localhost.png)
 
 1. PHP設定を有効します
-Apacheの設定ファイルの`httpd.conf`を編集します、以下の設定を有効にします。（`#`を削除します。）
-```text
+ Apacheの設定ファイルの`httpd.conf`を編集します、以下の設定を有効にします。（`#`を削除します。）
+ ```text
 #LoadModule php5_module libexec/apache2/libphp5.so
 ```
 
@@ -60,10 +61,10 @@ Apacheの設定ファイルの`httpd.conf`を編集します、以下の設定�
  ```bash
  $ sudo vi /etc/apache2/httpd.conf
  ```
-[参考：viコマンド(外部サイト)](http://net-newbie.com/linux/commands/vi.html)
+ > [参考：viコマンド(外部サイト)](http://net-newbie.com/linux/commands/vi.html)
 
 1. Apacheを再起動する
-```bash
+ ```bash
 $ sudo apachectl restart
 ```
 
@@ -80,19 +81,19 @@ $ sudo apachectl restart
 ### 1. GitHubからサンプルをダウンロード
 * 下記リンクをクリックしてプロジェクトをダウンロードします
 
-__[PHP_CMS_Demo](https://github.com/NIFTYCloud-mbaas/PHP_CMS_Demo/archive/master.zip)__
+ __[PHP_CMS_Demo](https://github.com/NIFTYCloud-mbaas/PHP_CMS_Demo/archive/master.zip)__
 
 * ダウンロードしたファイルを解凍し、下記３つのファイルが入っていることを確認してください
  * `index.php`：ファイルをアップロードするフォーム処理
  * `action.php`：ファイルをアップロードする処理
  * `index.png`：フォームの画像
 * 上記の３つのファイルをApacheのホームディレクトリにコピーします
+ * ホームディレクトリはApacheの設定ファイルに設定してあります。
 
-※ホームディレクトリはApacheの設定ファイルに設定してあります。
+> 参考：Macの場合
 
-#### 参考：Macの場合
-デフォルト設定の場合、Apacheのホームディレクトリは以下にあります。
-```text
+> デフォルト設定の場合、Apacheのホームディレクトリは以下にあります。
+> ```text
 DocumentRoot "/Library/WebServer/Documents"
 ```
 
@@ -108,7 +109,6 @@ DocumentRoot "/Library/WebServer/Documents"
 
 ### 3. APIキーの設定
 * `action.php` ファイルを編集します
- * 編集方法は[こちら](/PHP_CMS_Demo#参考：Macの場合)
 * 5～7行目「`//APIキーの設定`」の部分に、[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のダッシュボード上で確認したAPIキーを貼り付けます
 
 ![画像07](readme-img/007.png)
@@ -146,6 +146,7 @@ http://localhost/index.php
 ![画像](readme-img/filestore.png)
 
 * エラーの場合は以下のように表示されます
+
  ![画像](readme-img/fail_result_1.png)
  ![画像](readme-img/fail_result_2.png)
  * エラーコードが表示されている場合は[こちら](http://mb.cloud.nifty.com/doc/current/rest/common/error.html#REST%20API%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)から確認いただけます。
@@ -242,6 +243,6 @@ $options = array('http' => array(
 $file_upload_request = file_get_contents($url, false, stream_context_create($options));
 ```
 
- ## 参考
- * [ニフティクラウドmobile backend：REST API](http://mb.cloud.nifty.com/doc/current/rest/common/format.html)
- * [ニフティクラウドmobile backend：ファイル登録](http://mb.cloud.nifty.com/doc/current/rest/filestore/fileRegistration.html)
+## 参考
+* [ニフティクラウドmobile backend：REST API](http://mb.cloud.nifty.com/doc/current/rest/common/format.html)
+* [ニフティクラウドmobile backend：ファイル登録](http://mb.cloud.nifty.com/doc/current/rest/filestore/fileRegistration.html)
