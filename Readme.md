@@ -24,12 +24,14 @@
 * Server version: Apache/2.4.23 (Unix)
 * PHP v5.4以降
  * httpsへ通信が必要のため、https通信ができるよう環境をご用意ください。
- * v5.6.x の場合、SSL証明書が検証されますので、正しい証明書をご利用ください。(参考：http://php.net/manual/ja/migration56.openssl.php)
+ * v5.6.x の場合、SSL証明書が検証されますので、正しい証明書をご利用ください。
+   (参考：http://php.net/manual/ja/migration56.openssl.php)
 
 ##### Windows
-```
-調整中
-```
+* Windows 7 Professional
+* Server version: Apache/2.4.23 (Window)
+* PHP v5.4以降
+ * 今回はv5.6.28を利用しました。
 
 ### PHP環境準備について
 PHP環境及びPHP対応するサーバー(Apacheなど)を用意する必要がありますので、以下のいずれかを参考していただき、動作環境をご用意ください。
@@ -69,10 +71,93 @@ $ sudo apachectl restart
 ```
 
 ##### Windowsの場合
+下記はPHPとApacheをひとつずつインストールする方法です。
+
+１. PHPのダウンロードとインストール
+
+* [PHPの公式ページ](http://php.net/)からダウンロードします。
+
+* 上部メニューの「Downloads」をクリック -> 安定版（Current stable）であるPHP 5.6.28の「Windows downloads」をクリック ->
+  VC11 x64 Thread Safe (2016-Nov-09 18:10:04)から「Zip」をクリック -> ダウンロードしたZIPファイル（php-5.6.28-Win32-VC11-x64.zip）を展開します。
+
+* 展開したフォルダを「php」にリネームし、Cドライブ直下（c:\php）に配置します。
+
+* phpフォルダの直下にある「php.ini-production」ファイルをコピーし、「php.ini」というファイル名で同じフォルダ（phpフォルダ）に配置します。php.iniを編集します。
+ * 文字コードの設定 : default_charset = UTF-8
+ * タイムゾーンの設定 : date.timezone=Asia/Tokyo
+ * 日本語利用のためのマルチバイト設定 : mbstring.language = Japanese , mbstring.internal_encoding = UTF-8
+ * OpenSSLが有効の設定(**重要**) : extension=php_openssl.dll  (`;`を削除します）
+
+２. PHPの設定と動作確認
+
+* 環境変数の設定
+ * システム環境変数から変数「Path」を選択し、変数値の末尾に「;C:\php」を追加し、「OK」をクリックします。
+
+* PHPの動作確認
+ * コマンドプロンプトを起動し、オプション（-v）をつけて、phpのバージョンを確認します。
+ ```text
+　　C:\>php -v
+            PHP 5.6.28 (cli) (built: Nov  9 2016 06:40:27)
 ```
-調整中
-[こちら](http://php.net/manual/ja/install.windows.php)を参考していただき、インストールを行ってください。
+
+３. Apacheのダウンロードとインストール
+
+* [Apacheの公式サイト](http://httpd.apache.org/)からダウンロードします。
+
+* 「Apache httpd 2.4.23 Released」のブロックにある「Download」をクリック ->「Files for Microsoft Windows」リンクをクリック ->
+  「Apache Lounge」リンクをクリック -> Apache 2.4.23 Win64の httpd-2.4.23-win64-VC14.zipをクリックしてダウンロードします。
+
+* 展開した中にあるフォルダ（Apache24）をローカルドライブのCドライブ直下に移動（またはコピー）します。
+
+* サーバ名とポート番号を設定します。(C:\Apache24\conf\httpd.conf)
+ * サーバ名 ホスト名:ポート番号(**重要**) : ServerName localhost:80
+ * リクエストを受け付けるポート番号確認 : Listen 80
+
+* コマンドプロンプトを管理者として開き、httpd.exeを実行し、Apache24をサービスへインストールします。
+ ```text
+　　C:\Apache24\bin>httpd.exe -k install
 ```
+
+４. Apacheの動作確認
+
+* Apache24のbinフォルダ（C:\Apache24\bin）に移動し、「ApacheMonitor.exe」をダブルクリックします。
+
+* 赤い羽根の「ApacheMonitor」にマウスカーソルを合わせ右クリックし、「Open Apache Monitor」をクリックします。
+
+* 「Apache Service Monitor」が起動するので、「Start」をクリックします。
+
+* ブラウザを起動し、http://localhost/にアクセスします。
+
+* 「It works!」というメッセージが表示されればOKです。(C:\Apache24\htdocs\index.htmlの内容です)
+
+* これでApacheの動作確認は完了です。
+
+５. Apache + PHPの設定と動作確認
+
+* Apacheのhttpd.confを編集する。
+ * C:\Apache24\conf\httpd.confファイルの末尾にphpの記述（追加）します。
+ ```text
+    LoadModule php5_module "C:/php/php5apache2_4.dll"
+    PHPIniDir "C:/php"
+    AddType application/x-httpd-php .php
+```
+
+* 設定を反映するためにApacheを再起動します。
+ * ApacheMonitorからの場合は「Start」をクリックします。
+ * コマンドラインで操作する場合は以下のコマンドを実行します。
+ ```text
+    C:\Apache24\bin>httpd.exe -k restart
+```
+
+* ApacheのDocumentRootフォルダ「C:\Apache24\htdocs」にphpinfo.phpというファイルを作成し、以下のように編集します。
+ ```php
+    <?php phpinfo(); ?>
+```
+ * ブラウザを起動し、http://localhost/phpinfo.phpにアクセスします。
+ * このようなPHPのバージョンや詳細情報が掲載されたページが表示されれば、OKです。
+
+![画像](readme-img/phpinfo.png)
+
 
 #### サーバ環境
 デフォルトでPHPが入っていない場合、[こちら](http://php.net/manual/ja/install.php)を参考にしていただき、インストールを行ってください。
@@ -95,6 +180,13 @@ $ sudo apachectl restart
 > デフォルト設定の場合、Apacheのホームディレクトリは以下にあります。
 > ```text
 DocumentRoot "/Library/WebServer/Documents"
+```
+
+> 参考：Windowsの場合
+
+> Apacheの指定ホームディレクトリは以下にあります。
+> ```text
+DocumentRoot "C:\Apache24\htdocs"
 ```
 
 ### 2. [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)の会員登録/ログインとアプリ作成

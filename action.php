@@ -51,12 +51,19 @@ function uploadFile () {
             'X-NCMB-Timestamp: '.$timestamp
         );
 
-        $options = array('http' => array(
-            'method' => 'POST',
-            'content' => $content,
-            'header' => implode("\r\n", $headers),
-            'ignore_errors' => true
-        ));
+        $options = array(
+            'http' => array(
+                 'method'  => 'POST',
+                 'content' => $content,
+                 'header'  => implode("\r\n", $headers),
+                 'ignore_errors' => true
+            ),
+            'ssl' => array(
+                  'verify_peer' => false,
+                  'verify_peer_name' => false
+        	)
+    	);
+
         $file_upload_request = file_get_contents($url, false, stream_context_create($options));
         $Message = urlencode($file_upload_request);
         header("Location:index.php?Message=".$Message);
