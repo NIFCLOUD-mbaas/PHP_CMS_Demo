@@ -1,18 +1,24 @@
 # 【PHP】 サーバからファイルをアップロードしよう！<br>[REST API]
+
+```
+現在こちらのリポジトリは正常に動作しておりません。ご不便をおかけしていますが、順次改修対応を進めておりますので、今しばらくお待ちください。
+今後ともNIFCLOUD mobile backendをどうぞよろしくお願いいたします。
+```
+
 *2016/12/06作成*
 
 ![画像1](readme-img/zentai.png)
 
 ## 概要
-* [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)の『ファイルストア』機能を、REST APIを使用してファイル（画像、テキストなど）をサーバから登録（サーバーから[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)へ登録）するサンプルプロジェクトです。
-* ニフティクラウドmobile backendが提供している[REST API](http://mb.cloud.nifty.com/doc/current/rest/common/format.html)を利用することで、サーバ環境からも簡単にファイルをアップロードの実装が可能です
-* 簡単な操作ですぐに [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)の機能を体験いただけます★☆
+* [NIFCLOUD mobile backend](https://mbaas.nifcloud.com/)の『ファイルストア』機能を、REST APIを使用してファイル（画像、テキストなど）をサーバから登録（サーバーから[NIFCLOUD mobile backend](https://mbaas.nifcloud.com/)へ登録）するサンプルプロジェクトです。
+* NIFCLOUD mobile backendが提供している[REST API](https://mbaas.nifcloud.com/doc/current/rest/common/format.html)を利用することで、サーバ環境からも簡単にファイルをアップロードの実装が可能です
+* 簡単な操作ですぐに [NIFCLOUD mobile backend](https://mbaas.nifcloud.com/)の機能を体験いただけます★☆
 
-## ニフティクラウドmobile backendって何？
+## NIFCLOUD mobile backendって何？
 * スマートフォンアプリのバックエンド機能（プッシュ通知・データストア・会員管理・ファイルストア・SNS連携・位置情報検索・スクリプト）が**開発不要**、しかも基本**無料**(注1)で使えるクラウドサービスです
-* 今回は「ファイルストア」機能を使用し、[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)を「__CMS__」として使用してみましょう！
+* 今回は「ファイルストア」機能を使用し、[NIFCLOUD mobile backend](https://mbaas.nifcloud.com/)を「__CMS__」として使用してみましょう！
 
-注1：詳しくは[こちら](http://mb.cloud.nifty.com/price.htm)をご覧ください
+注1：詳しくは[こちら](https://mbaas.nifcloud.com/price.htm)をご覧ください
 
  ![画像2](readme-img/002.png)
 
@@ -166,7 +172,7 @@ $ sudo apachectl restart
 ### 1. GitHubからサンプルをダウンロード
 * 下記リンクをクリックしてプロジェクトをダウンロードします
 
- __[PHP_CMS_Demo](https://github.com/NIFTYCloud-mbaas/PHP_CMS_Demo/archive/master.zip)__
+ __[PHP_CMS_Demo](https://github.com/NIFCLOUD-mbaas/PHP_CMS_Demo/archive/master.zip)__
 
 * ダウンロードしたファイルを解凍し、下記３つのファイルが入っていることを確認してください
  * `index.php`：ファイルをアップロードするフォーム処理
@@ -189,19 +195,19 @@ DocumentRoot "/Library/WebServer/Documents"
 DocumentRoot "C:\Apache24\htdocs"
 ```
 
-### 2. [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)の会員登録/ログインとアプリ作成
+### 2. [NIFCLOUD mobile backend](https://mbaas.nifcloud.com/)の会員登録/ログインとアプリ作成
 * 上記リンクから会員登録（無料）をします。登録ができたらログインをすると下図のように「アプリの新規作成」画面が出るのでアプリを作成します
 
 ![アプリ作成1](readme-img/アプリ作成1.png)
 
 * アプリ作成されると下図のような画面になります
-* この２種類のAPIキー（アプリケーションキーとクライアントキー）はPHPのプログラムと[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)を紐付けるために、後ほど使用します
+* この２種類のAPIキー（アプリケーションキーとクライアントキー）はPHPのプログラムと[NIFCLOUD mobile backend](https://mbaas.nifcloud.com/)を紐付けるために、後ほど使用します
 
 ![アプリ作成２](readme-img/アプリ作成2.png)
 
 ### 3. APIキーの設定
 * `action.php` ファイルを編集します
-* 5～7行目「`//APIキーの設定`」の部分に、[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のダッシュボード上で確認したAPIキーを貼り付けます
+* 5～7行目「`//APIキーの設定`」の部分に、[NIFCLOUD mobile backend](https://mbaas.nifcloud.com/)のダッシュボード上で確認したAPIキーを貼り付けます
 
 ![画像07](readme-img/007.png)
 
@@ -232,7 +238,7 @@ http://localhost/index.php
 
 ![画像](readme-img/success_result.png)
 
-* [ニフティクラウドmobile backendの管理画面](https://console.mb.cloud.nifty.com/)を確認しましょう
+* [NIFCLOUD mobile backendの管理画面](https://console.mbaas.nifcloud.com/)を確認しましょう
 * ファイルがアップロードされたことを確認できます
 
 ![画像](readme-img/filestore.png)
@@ -241,15 +247,15 @@ http://localhost/index.php
 
  ![画像](readme-img/fail_result_1.png)
  ![画像](readme-img/fail_result_2.png)
- * エラーコードが表示されている場合は[こちら](http://mb.cloud.nifty.com/doc/current/rest/common/error.html#REST%20API%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)から確認いただけます。
+ * エラーコードが表示されている場合は[こちら](https://mbaas.nifcloud.com/doc/current/rest/common/error.html#REST%20API%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)から確認いただけます。
 
 ## 解説
 ### REST API実装について
-* ニフティクラウド mobile backend は REST API を提供しているため、外部サーバからすべての機能をご利用いただけます
+* NIFCLOUD mobile backend は REST API を提供しているため、外部サーバからすべての機能をご利用いただけます
 * REST APIの利用は、共通フォーマットを従ってリクエストを作成する必要があります
- * 共通フォーマットについては[こちら](http://mb.cloud.nifty.com/doc/current/rest/common/format.html)をご確認ください。
+ * 共通フォーマットについては[こちら](https://mbaas.nifcloud.com/doc/current/rest/common/format.html)をご確認ください。
 * 共通フォーマットではセキュリティを守るため、独自仕様として毎回シグネチャーを作成付しリクエストヘッダーに付加する必要があります
- * シグネチャーの作成については[こちら](http://mb.cloud.nifty.com/doc/current/rest/common/signature.html)をご参照ください。
+ * シグネチャーの作成については[こちら](https://mbaas.nifcloud.com/doc/current/rest/common/signature.html)をご参照ください。
 
 #### コード紹介
 * シグネチャーの実装は以下のようになっています。
@@ -279,7 +285,7 @@ $headers = array(
 
 ### REST APIでのファイルの登録について
 * ファイルを登録するためのREST APIを利用することで、サーバからファイル登録が可能です
- * ファイル登録REST APIについて詳しくは[こちら](http://mb.cloud.nifty.com/doc/current/rest/filestore/fileRegistration.html)をご参照ください。
+ * ファイル登録REST APIについて詳しくは[こちら](https://mbaas.nifcloud.com/doc/current/rest/filestore/fileRegistration.html)をご参照ください。
 
 * `index.php`にはファイルをアップロードするフォームが書かれています
 ```html
@@ -336,5 +342,5 @@ $file_upload_request = file_get_contents($url, false, stream_context_create($opt
 ```
 
 ## 参考
-* [ニフティクラウドmobile backend：REST API](http://mb.cloud.nifty.com/doc/current/rest/common/format.html)
-* [ニフティクラウドmobile backend：ファイル登録](http://mb.cloud.nifty.com/doc/current/rest/filestore/fileRegistration.html)
+* [NIFCLOUD mobile backend：REST API](https://mbaas.nifcloud.com/doc/current/rest/common/format.html)
+* [NIFCLOUD mobile backend：ファイル登録](https://mbaas.nifcloud.com/doc/current/rest/filestore/fileRegistration.html)
